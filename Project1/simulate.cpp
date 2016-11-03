@@ -74,9 +74,9 @@ vector<fault> Simulator::getFaultList(unsigned int id)
 		return faultList.at(id);
 	}
 	
-	unsigned int newFaultList;
-	/*DGNode<gate> * crrntNode = nodes.at(id);
-	switch (crrntNode->getValue()) {
+	fault newFaultList;
+	DGNode<gate> * crrntNode = nodes.at(id);
+	switch (crrntNode->getValue()) /*{
 	case AND:
 		newOutput = 0xffffffff;
 		for (auto it = crrntNode->getIE()->begin(); it != crrntNode->getIE()->end(); ++it) {
