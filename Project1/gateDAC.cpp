@@ -14,8 +14,8 @@ DGNode<gate>::DGNode(unsigned int id){
 DGNode<gate>::DGNode(unsigned int id, gate value){
 	this->id = id;
 	this->value = value;
-	outEdge = *(new forward_list<DGNode<gate> *>());
-	inEdge = *(new forward_list<DGNode<gate> *>());
+	outEdge = forward_list<DGNode<gate> *>();
+	inEdge = forward_list<DGNode<gate> *>();
 }
 
 void DGNode<gate>::addOE(DGNode<gate> * newNode){
