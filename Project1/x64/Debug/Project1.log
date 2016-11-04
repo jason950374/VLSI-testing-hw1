@@ -1,6 +1,7 @@
 ﻿  simulate.cpp
-  正在產生程式碼...
-  正在略過... (未偵測到相關變更)
-  main2.cpp
+c:\users\jason\source\repos\vlst-testing-hw1\project1\simulator.h(35): warning C4172: 傳回區域變數或暫存的位址
+c:\users\jason\source\repos\vlst-testing-hw1\project1\simulator.h(19): warning C4172: 傳回區域變數或暫存的位址
+c:\users\jason\source\repos\vlst-testing-hw1\project1\simulator.h(23): warning C4172: 傳回區域變數或暫存的位址
+c:\users\jason\source\repos\vlst-testing-hw1\project1\simulator.h(27): warning C4172: 傳回區域變數或暫存的位址
   Project1.vcxproj -> C:\Users\jason\Source\Repos\VLST-testing-hw1\x64\Debug\Project1.exe
   Project1.vcxproj -> C:\Users\jason\Source\Repos\VLST-testing-hw1\x64\Debug\Project1.pdb (Full PDB)

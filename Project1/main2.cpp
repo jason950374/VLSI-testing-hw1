@@ -30,7 +30,7 @@ int main(void){
 	encode(x, 3);
 	Simulator simulator (circuit, x);
 	printTrTable(x, 3, simulator.getOutput(D));
-
+	simulator.getFaultList(D);
 	system("pause");
 	return 0;
 }
@@ -73,3 +73,16 @@ void printTrTable(unsigned int * x, unsigned char size, unsigned int z){
 		printf("|  %d\n", (z & mask) != 0);
 	}
 }
+/*
+void printFaultList(unsigned int * x, unsigned char size, unsigned int z) {
+	int i, j;
+	unsigned int mask;
+	//mask = (mask << 1) | (mask >> 31) is circular shift
+	for (i = 0, mask = 1; i < (1 << size); i++, mask = (mask << 1) | (mask >> 31)) {
+		for (j = 0; j < size; j++) {
+			printf("%d  ", (x[j] & mask) != 0);
+		}
+		printf("|  %d\n", (z & mask) != 0);
+	}
+}
+*/
