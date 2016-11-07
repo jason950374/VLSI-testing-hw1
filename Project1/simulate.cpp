@@ -84,7 +84,7 @@ vector<fault> * Simulator::getFaultList(unsigned int id)
 	case AND:
 		//for AND initial to 0 if ouput = 1 (Non-controlling) (to do or), else = 0 (controlling) (to do and)
 		for (auto it = newFaultList.begin(); it != newFaultList.end(); ++it) {
-			*it = ~getOutput(id);
+			*it = fault(~getOutput(id), ~getOutput(id));
 		}
 
 		for (auto itIE = crrntNode->getIE()->begin(); itIE != crrntNode->getIE()->end(); ++itIE) {
@@ -93,7 +93,7 @@ vector<fault> * Simulator::getFaultList(unsigned int id)
 			for (;
 				itIEF != getFaultList((*itIE)->getId())->end(), it != newFaultList.end();
 				++itIEF, ++it) {
-				*it = *it | *itIEF & getOutput(id) //Non - controlling
+				*it = (*it | *itIEF) & getOutput(id) //Non - controlling
 					| *it & *itIEF & (~(getOutput((*itIE)->getId()))) & (~getOutput(id)) //controlling
 					| *it & (~(*itIEF)) & getOutput((*itIE)->getId()) & (~getOutput(id)); //controlling
 			}
@@ -102,7 +102,7 @@ vector<fault> * Simulator::getFaultList(unsigned int id)
 	case OR:
 		//for OR initial to 0 if ouput = 0 (Non-controlling) (to do or), else = 1 (controlling) (to do and)
 		for (auto it = newFaultList.begin(); it != newFaultList.end(); ++it) {
-			*it = getOutput(id);
+			*it = fault(getOutput(id), getOutput(id));
 		}
 
 		for (auto itIE = crrntNode->getIE()->begin(); itIE != crrntNode->getIE()->end(); ++itIE) {
@@ -111,7 +111,7 @@ vector<fault> * Simulator::getFaultList(unsigned int id)
 			for (;
 				itIEF != getFaultList((*itIE)->getId())->end(), it != newFaultList.end();
 				++itIEF, ++it) {
-				*it = *it | *itIEF & (~getOutput(id)) //Non - controlling
+				*it = (*it | *itIEF) & (~getOutput(id)) //Non - controlling
 					| *it & *itIEF & getOutput((*itIE)->getId()) & getOutput(id) //controlling
 					| *it & (~(*itIEF)) & (~(getOutput((*itIE)->getId()))) & getOutput(id); //controlling
 			}
@@ -120,25 +120,24 @@ vector<fault> * Simulator::getFaultList(unsigned int id)
 	case NAND:
 		//for NAND initial to 0 if ouput = 0 (Non-controlling) (to do or), else = 1 (controlling) (to do and)
 		for (auto it = newFaultList.begin(); it != newFaultList.end(); ++it) {
-			*it = getOutput(id);
+			*it = fault(getOutput(id), getOutput(id));
 		}
-
 		for (auto itIE = crrntNode->getIE()->begin(); itIE != crrntNode->getIE()->end(); ++itIE) {
 			auto itIEF = getFaultList((*itIE)->getId())->begin();
 			auto it = newFaultList.begin();
 			for (;
 				itIEF != getFaultList((*itIE)->getId())->end(), it != newFaultList.end();
 				++itIEF, ++it) {
-				*it = *it | *itIEF & (~getOutput(id)) //Non - controlling
-					| *it & *itIEF & (~(getOutput((*itIE)->getId()))) & getOutput(id) //controlling
-					| *it & (~(*itIEF)) & (getOutput((*itIE)->getId())) & getOutput(id); //controlling
+				*it = ((*it | *itIEF) & (~getOutput(id))) //Non - controlling
+					| (*it & *itIEF & (~(getOutput((*itIE)->getId()))) & getOutput(id)) //controlling
+					| (*it & (~(*itIEF)) & (getOutput((*itIE)->getId())) & getOutput(id)); //controlling
 			}
 		}
 		break;
 	case NOR:
 		//for NOR initial to 0 if ouput = 1 (Non-controlling) (to do or), else = 0 (controlling) (to do and)
 		for (auto it = newFaultList.begin(); it != newFaultList.end(); ++it) {
-			*it = ~getOutput(id);
+			*it = fault(~getOutput(id), ~getOutput(id));
 		}
 
 		for (auto itIE = crrntNode->getIE()->begin(); itIE != crrntNode->getIE()->end(); ++itIE) {
@@ -147,7 +146,7 @@ vector<fault> * Simulator::getFaultList(unsigned int id)
 			for (;
 				itIEF != getFaultList((*itIE)->getId())->end(), it != newFaultList.end();
 				++itIEF, ++it) {
-				*it = *it | *itIEF & getOutput(id) //Non - controlling
+				*it = (*it | *itIEF) & getOutput(id) //Non - controlling
 					| *it & *itIEF & (getOutput((*itIE)->getId())) & (~getOutput(id)) //controlling
 					| *it & (~(*itIEF)) & (~(getOutput((*itIE)->getId()))) & (~getOutput(id)); //controlling
 			}

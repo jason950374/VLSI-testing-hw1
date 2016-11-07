@@ -15,23 +15,23 @@ struct fault {
 	{
 	}
 
-	fault& operator&(const fault& f2) const {
+	fault operator&(const fault& f2) const {
 		return fault(stuckAtOne & f2.stuckAtOne, stuckAtZero & f2.stuckAtZero);
 	}
 
-	fault& operator&(const unsigned int i) const {
+	fault operator&(const unsigned int i) const {
 		return fault(stuckAtOne & i, stuckAtZero & i);
 	}
 
-	fault& operator|(const fault& f2) const {
+	fault operator|(const fault& f2) const {
 		return fault(stuckAtOne | f2.stuckAtOne, stuckAtZero | f2.stuckAtZero);
 	}
 
-	fault& operator|(const unsigned int i) const {
+	fault operator|(const unsigned int i) const {
 		return fault(stuckAtOne | i, stuckAtZero | i);
 	}
 
-	fault& operator~() const {
+	fault operator~() const {
 		return fault(~stuckAtOne, ~stuckAtZero);
 	}
 };
