@@ -11,6 +11,8 @@ using namespace std;
 void initial(directGraph<gate> * circuit);
 void encode(unsigned int * x, unsigned char size);
 void printTrTable(unsigned int * x, unsigned char size, unsigned int z);
+void printFaultList(unsigned int * x, unsigned char size, Simulator simulator, unsigned int position);
+void printGateName(unsigned int gateid);
 
 enum gatelist{
 	X1,
@@ -29,8 +31,9 @@ int main(void){
 	unsigned int x[3] = { 0 };
 	encode(x, 3);
 	Simulator simulator (circuit, x);
-	printTrTable(x, 3, simulator.getOutput(D));
+	//printTrTable(x, 3, simulator.getOutput(D));
 	simulator.getFaultList(D);
+	printFaultList(x, 3, simulator, X1);
 	system("pause");
 	return 0;
 }
@@ -73,16 +76,73 @@ void printTrTable(unsigned int * x, unsigned char size, unsigned int z){
 		printf("|  %d\n", (z & mask) != 0);
 	}
 }
-/*
-void printFaultList(unsigned int * x, unsigned char size, unsigned int z) {
+
+void printFaultList(unsigned int * x, unsigned char size, Simulator simulator, unsigned int position){
 	int i, j;
 	unsigned int mask;
+	vector<fault> * faultList = simulator.getFaultList(position);
 	//mask = (mask << 1) | (mask >> 31) is circular shift
 	for (i = 0, mask = 1; i < (1 << size); i++, mask = (mask << 1) | (mask >> 31)) {
 		for (j = 0; j < size; j++) {
 			printf("%d  ", (x[j] & mask) != 0);
 		}
-		printf("|  %d\n", (z & mask) != 0);
+		printf("\n-------------------\n");
+		printf("Stuck At One: ");
+		unsigned int i = 0;
+		for (auto it = faultList->begin(); it != faultList->end(); ++it, ++i){
+			if (((*it).stuckAtOne & mask) != 0){
+				printGateName(i);
+			}
+		}
+		printf("\n");
+		printf("Stuck At Zero: ");
+		i = 0;
+		for (auto it = faultList->begin(); it != faultList->end(); ++it, ++i){
+			if (((*it).stuckAtZero & mask) != 0){
+				printGateName(i);
+			}
+		}
+		printf("\n\n");
 	}
 }
-*/
+
+void printFaultList(unsigned int * x, unsigned char size, Simulator simulator, unsigned int position, unsigned int patten){
+	int i, j;
+	unsigned int mask = ???????????;
+	vector<fault> * faultList = simulator.getFaultList(position);
+	for (j = 0; j < size; j++) {
+		printf("%d  ", (x[j] & mask) != 0);
+	}
+	printf("\n-------------------\n");
+	printf("Stuck At One: ");
+	unsigned int i = 0;
+	for (auto it = faultList->begin(); it != faultList->end(); ++it, ++i){
+		if (((*it).stuckAtOne & mask) != 0){
+			printGateName(i);
+		}
+	}
+	printf("\n");
+	printf("Stuck At Zero: ");
+	i = 0;
+	for (auto it = faultList->begin(); it != faultList->end(); ++it, ++i){
+		if (((*it).stuckAtZero & mask) != 0){
+			printGateName(i);
+		}
+	}
+	printf("\n\n");
+}
+
+
+void printGateName(unsigned int gateid){
+	switch (gateid){
+		case X1:printf("X1"); break;
+		case X2:printf("X2"); break;
+		case X3:printf("X3"); break;
+		case Y1:printf("Y1"); break;
+		case Y2:printf("Y2"); break;
+		case A:	printf("A"); break;
+		case B:	printf("B"); break;
+		case D:	printf("D"); break;
+		default: printf("what???!!!");
+	}
+}
