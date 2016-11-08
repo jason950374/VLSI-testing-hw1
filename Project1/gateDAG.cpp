@@ -1,5 +1,5 @@
-#include <directGraph.h>
-#include<gate.h>
+#include "directGraph.h"
+#include "gate.h"
 #include <iostream>
 
 

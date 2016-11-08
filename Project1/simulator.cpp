@@ -1,4 +1,4 @@
-#include<simulator.h>
+#include "simulator.h"
 #include <iostream>
 
 Simulator::Simulator(directGraph<gate> * circuit, unsigned int * PI){

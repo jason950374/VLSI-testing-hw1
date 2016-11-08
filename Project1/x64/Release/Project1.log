@@ -1,5 +1,14 @@
-﻿已經開始建置於 2016/10/22 下午 04:37:44。
-
-建置成功。
-
-經過時間 00:00:00.01
+﻿  gateDAG.cpp
+gateDAG.cpp(48): warning C4267: '引數': 將 'size_t' 轉換為 'unsigned int'，資料可能遺失
+gateDAG.cpp(55): warning C4267: '引數': 將 'size_t' 轉換為 'unsigned int'，資料可能遺失
+gateDAG.cpp(82): warning C4267: '正在初始化': 將 'size_t' 轉換為 'unsigned int'，資料可能遺失
+gateDAG.cpp(107): warning C4267: '正在初始化': 將 'size_t' 轉換為 'unsigned int'，資料可能遺失
+  main2.cpp
+  simulator.cpp
+  正在產生程式碼
+  0 of 772 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    11 functions had inline decision re-evaluated but remain unchanged
+  已完成程式碼產生
+  Project1.vcxproj -> C:\Users\jason\Source\Repos\VLSI-testing-hw1\x64\Release\Project1.exe
+  Project1.vcxproj -> C:\Users\jason\Source\Repos\VLSI-testing-hw1\x64\Release\Project1.pdb (Full PDB)

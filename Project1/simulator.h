@@ -1,8 +1,8 @@
 #ifndef __SIMULATOR_H__
 #define __SIMULATOR_H__
 
-#include <directGraph.h>
-#include<gate.h>
+#include "directGraph.h"
+#include "gate.h"
 #include<vector>
 #include<stack>
 

@@ -1,6 +1,6 @@
-#include <directGraph.h>
-#include<gate.h>
-#include<simulator.h>
+#include "directGraph.h"
+#include"gate.h"
+#include"simulator.h"
 #include<stdio.h>
 #include<vector>
 #include<stack>
