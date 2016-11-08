@@ -1,6 +1,5 @@
 //#include <stdio.h>
 //#include <forward_list>
-//#include <directGraph.h>
 //
 //using namespace std;
 //
@@ -37,12 +36,16 @@
 //	forward_list<unsigned int> tp_FZ0 = TPG(x, 3, z_Ffree, z_FZ0);
 //	forward_list<unsigned int> tp_FZ1 = TPG(x, 3, z_Ffree, z_FZ1);
 //
-//	printf("-------------\n"); printTP(tp_FA0, 3); printf("-------------\n\n");
-//	printf("-------------\n"); printTP(tp_FA1, 3); printf("-------------\n\n");
-//	printf("-------------\n"); printTP(tp_FB0, 3); printf("-------------\n\n");
-//	printf("-------------\n"); printTP(tp_FB1, 3); printf("-------------\n\n");
-//	printf("-------------\n"); printTP(tp_FZ0, 3); printf("-------------\n\n");
-//	printf("-------------\n"); printTP(tp_FZ1, 3); printf("-------------\n\n");
+//	printf("truth table\n");
+//	printf("------- fault free ------\n"); printTrTable(x, 3, z_Ffree); printf("-------------\n\n");
+//
+//	printf("test patten\n");
+//	printf("-------A stuck at 0------\n"); printTP(tp_FA0, 3); printf("-------------\n\n");
+//	printf("-------A stuck at 1------\n"); printTP(tp_FA1, 3); printf("-------------\n\n");
+//	printf("-------B stuck at 0------\n"); printTP(tp_FB0, 3); printf("-------------\n\n");
+//	printf("-------B stuck at 1------\n"); printTP(tp_FB1, 3); printf("-------------\n\n");
+//	printf("-------Z stuck at 0------\n"); printTP(tp_FZ0, 3); printf("-------------\n\n");
+//	printf("-------Z stuck at 1------\n"); printTP(tp_FZ1, 3); printf("-------------\n\n");
 //	
 //	system("pause");
 //	return 0;
